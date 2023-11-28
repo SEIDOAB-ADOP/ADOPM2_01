@@ -1,47 +1,40 @@
 ﻿using System;
-
 namespace ADOPM2_01_06
 {
 	class Program
 	{
-		private class Stock
+		public enum enAnimalKind { Elephant, Tiger, Lion }
+        public enum enAnimalMood { Sleepy, Hungry, PissedOff }
+        public class csAnimal
 		{
-			decimal _currentPrice = 1;      // private "backing" field
-			public decimal CurrentPrice     // public property
+			public enAnimalKind AnimalKind { get;  set; }
+
+			public enAnimalMood AnimalMood { get; set; }
+			public string Name { get; set; }
+
+			public void ChangeAnimal(enAnimalKind animalKind)
 			{
-				get => _currentPrice;
-				set
-				{
-					if (value > 0) _currentPrice = value;
-					else throw new Exception("Wrong Price");
-				}
+				AnimalKind = animalKind;
 			}
 
-			public decimal SharesOwned { get; private set; } = 50;  // Automatic properties initialization
-
-			public decimal Worth
+			public override string ToString() => $"{Name} the {AnimalMood} {AnimalKind}";
+			public csAnimal()
 			{
-				get => _currentPrice * SharesOwned;
-				init => SharesOwned = value / _currentPrice;  // Can only be set at initialization time
-			}
-            public Stock()
-            {
-				Worth = 5000;
+				AnimalMood = enAnimalMood.PissedOff;
+				AnimalKind = enAnimalKind.Lion;
             }
-		}
+         }
+
 		static void Main(string[] args)
 		{
-			var stock1 = new Stock();
+            //var an1 = new csAnimal();
+            var an1 = new csAnimal() { Name = "Joe", AnimalMood = enAnimalMood.Hungry};
+			Console.WriteLine(an1);
 
-			Console.WriteLine(stock1.Worth);         // 50
-			Console.WriteLine(stock1.SharesOwned);   // 50
-
-			var stock2 = new Stock { CurrentPrice = 50, Worth = 10000 }; //object initialization of public properties
-			Console.WriteLine(stock2.Worth);         // 10000
-			Console.WriteLine(stock2.SharesOwned);   // 200
-
-			stock2.CurrentPrice = 3.0M;
-		}
+			an1.AnimalKind = enAnimalKind.Tiger;
+			an1.AnimalMood = enAnimalMood.Sleepy;
+			Console.WriteLine(an1);
+        }
 	}
 }
 //Excercises:

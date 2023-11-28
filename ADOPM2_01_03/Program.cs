@@ -18,20 +18,27 @@ namespace ADOPM2_01_03
 
         public class referenceTypePoint { public int X, Y; }
         
-          public class immutableReferenceTypePoint 
-          {
-              readonly public int X, Y;
-              public immutableReferenceTypePoint(int X, int Y)
-              {
-                  this.X = X;
-                  this.Y = Y;
-              }
-            public immutableReferenceTypePoint SetX(int X, int Y)
+        public class immutableReferenceTypePoint 
+        {
+            public int X { get; }
+            public int Y { get; }
+
+
+            public immutableReferenceTypePoint(int X, int Y)
+            {
+                this.X = X;
+                this.Y = Y;
+            }
+            public immutableReferenceTypePoint SetXY(int X, int Y)
             {
                 var newrp = new immutableReferenceTypePoint(X, Y);
                 return newrp;
             }
-          }
+
+        }
+
+        public record recordPoint (int X, int Y)
+
          
         static void Main(string[] args)
         {
@@ -48,8 +55,17 @@ namespace ADOPM2_01_03
 
             //demonstrate mutable
             //imvp1.X = imrp1.X = 10;     // Compiler error as the types are immutable
-            Console.WriteLine($"{nameof(imvp1)}={(imvp1.X, imvp1.Y)}");
+
+            var imrp2 = imrp1.SetXY(10, 10);
+            //Console.WriteLine($"{nameof(imvp1)}={(imvp1.X, imvp1.Y)}");
             Console.WriteLine($"{nameof(imrp1)}={(imrp1.X, imrp1.Y)}");
+            Console.WriteLine($"{nameof(imrp1)}={(imrp2.X, imrp2.Y)}");
+
+            Console.WriteLine();
+            var r1 = new recordPoint(3, 5);
+            var r2 = r1 with { X = 10 };
+            Console.WriteLine(r1);
+            Console.WriteLine(r2);
         }
     }
 }

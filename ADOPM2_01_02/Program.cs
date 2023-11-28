@@ -7,23 +7,35 @@ namespace ADOPM2_01_02
 		public class Apple
 		{
 			public string Name;             // Instance field
+			public decimal Weigth =0;
+
 			public static int NrInstances;  // Static field
+
+			
 			public Apple(string n)
 			{
 				Name = n;                      // Assign the instance field
 
 				NrInstances = NrInstances + 1; // Increment the static field
 			}
+			
+
+			public Apple(string n, decimal weight) : this(n)
+			{
+				Weigth = weight;
+            }
 		}
 		static void Main(string[] args)
 		{
-
 			Apple a1 = new Apple("Pink Lady");
 			Apple a2 = new Apple("Discovery");
+
+			Apple a3 = new Apple("Granny", 100.3M);
 
 			
 			Console.WriteLine(a1.Name);      // Pink Lady
 			Console.WriteLine(a2.Name);      // Discovery
+
 
 			Console.WriteLine(Apple.NrInstances);   // 2
 		}

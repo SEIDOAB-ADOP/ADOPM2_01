@@ -17,7 +17,7 @@ namespace ADOPM2_01_05
 		public class Triangle : Shape, IEquatable<Shape>
 		{
 			public double Area() => Width * Height / 2;
-			public override bool Equals(Shape t1) => (this.Width, base.Height) == (t1.Width, t1.Height);
+			public override bool Equals(Shape t1) => (Width, Height) == (t1.Width, t1.Height);
 			public string myColor => color;
 		}
 
