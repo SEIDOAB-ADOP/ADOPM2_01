@@ -8,16 +8,27 @@ namespace ADOPM2_01_06
         public class csAnimal
 		{
 			public enAnimalKind AnimalKind { get;  set; }
-
 			public enAnimalMood AnimalMood { get; set; }
 			public string Name { get; set; }
 
-			public void ChangeAnimal(enAnimalKind animalKind)
-			{
-				AnimalKind = animalKind;
+			private int _age;
+			public int Age { get { return _age; }
+				set
+				{
+					if (value <= 0 || value > 100)
+						throw new  ArgumentException("Wrong Age");
+
+                    _age = value;
+				}
 			}
 
-			public override string ToString() => $"{Name} the {AnimalMood} {AnimalKind}";
+			public void GetAnimalFood()
+			{
+				//Massive to code to connect to a database and gett the best food
+				throw new Exception("Database no acessible");
+			}
+
+			public override string ToString() => $"{Name} the {AnimalMood} {AnimalKind}. {Age} years old";
 			public csAnimal()
 			{
 				AnimalMood = enAnimalMood.PissedOff;
@@ -25,15 +36,39 @@ namespace ADOPM2_01_06
             }
          }
 
+
 		static void Main(string[] args)
 		{
-            //var an1 = new csAnimal();
-            var an1 = new csAnimal() { Name = "Joe", AnimalMood = enAnimalMood.Hungry};
-			Console.WriteLine(an1);
 
-			an1.AnimalKind = enAnimalKind.Tiger;
-			an1.AnimalMood = enAnimalMood.Sleepy;
-			Console.WriteLine(an1);
+            //var an1 = new csAnimal();
+            var an1 = new csAnimal() { Name = "Joe", AnimalMood = enAnimalMood.Hungry, AnimalKind = enAnimalKind.Tiger };
+
+			try
+			{
+				an1.Age = 5;
+				//an1.GetAnimalFood();
+
+				Console.WriteLine(an1);
+
+
+				Console.WriteLine("Program terminated!");
+			}
+			catch(ArgumentException e)
+			{
+				Console.WriteLine("Not so good buddy!");
+			}
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            finally
+			{
+                Console.WriteLine("My json file is closed");
+            }
+
+			Console.ReadKey();
+
         }
 	}
 }

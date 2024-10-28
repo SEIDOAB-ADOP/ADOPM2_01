@@ -62,6 +62,10 @@ namespace ADOPM2_01_11
 			PlayingCard card1 = PlayingCard.Factory.HighestCard();
 			Console.WriteLine(card1);
 
+
+			var card5 = PlayingCard.Factory.HighestCard();
+
+
             Console.WriteLine(PlayingCard.Factory.LowestCard());
 			Console.WriteLine(PlayingCard.Factory.HighestCard(PlayingCardColor.Diamonds));
 			Console.WriteLine(PlayingCard.Factory.LowestCard(PlayingCardColor.Diamonds));

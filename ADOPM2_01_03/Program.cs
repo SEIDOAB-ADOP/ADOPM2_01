@@ -37,7 +37,7 @@ namespace ADOPM2_01_03
 
         }
 
-        public record recordPoint (int X, int Y)
+        public record recordPoint (int X, int Y);
 
          
         static void Main(string[] args)
