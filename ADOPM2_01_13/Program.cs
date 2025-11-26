@@ -11,10 +11,10 @@ namespace ADOPM2_01_13
             public long Area => Width * Height;
 
             //Operator overloading
-            public static bool operator ==(RectangleClass r1, RectangleClass r2) => (r1.Width, r1.Height) == (r2.Width, r2.Height);
-            public static bool operator !=(RectangleClass r1, RectangleClass r2) => (r1.Width, r1.Height) != (r2.Width, r2.Height);
-            public static RectangleClass operator +(RectangleClass r1, RectangleClass r2) => 
-                new RectangleClass {Height = r1.Height + r2.Height, Width = r1.Width + r2.Width};
+            public static bool operator ==(RectangleClass a, RectangleClass b) => (a.Width, a.Height) == (b.Width, b.Height);
+            public static bool operator !=(RectangleClass a, RectangleClass b) => (a.Width, a.Height) != (b.Width, b.Height);
+            public static RectangleClass operator +(RectangleClass a, RectangleClass b) => 
+                new RectangleClass {Height = a.Height + b.Height, Width = a.Width + b.Width};
 
         }
         static void Main(string[] args)
